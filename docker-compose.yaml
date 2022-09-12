@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  database:
+    image: "mysql:8"
+    ports:
+      - "8889:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sample
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
