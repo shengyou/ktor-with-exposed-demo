@@ -2,6 +2,7 @@ val kotlinVersion: String by project
 val ktorVersion: String by project
 val exposedVersion: String by project
 val mysqlConnectorVersion: String by project
+val javaFakerVersion: String by project
 val logbackVersion: String by project
 
 plugins {
@@ -33,6 +34,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("mysql:mysql-connector-java:$mysqlConnectorVersion")
+    implementation("com.github.javafaker:javafaker:$javaFakerVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
