@@ -8,5 +8,6 @@ fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         configureSerialization()
         configureRouting()
+        configureBookApi()
     }.start(wait = true)
 }
