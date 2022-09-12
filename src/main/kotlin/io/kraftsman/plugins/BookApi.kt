@@ -1,6 +1,7 @@
 package io.kraftsman.plugins
 
 import io.kraftsman.entities.Book
+import io.kraftsman.responses.BookResponse
 import io.kraftsman.tables.Books
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -19,12 +20,21 @@ fun Application.configureBookApi() {
 
     routing {
         get("/api/v1/books") {
-            newSuspendedTransaction {
+            val books = newSuspendedTransaction {
                 Book.find { Books.id lessEq 10 }
                     .orderBy(Books.id to SortOrder.DESC)
+                    .map {
+                        BookResponse(
+                            title = it.title,
+                            author = it.author.name,
+                            genre = it.genre,
+                            isbn = it.isbn,
+                            publisher = it.publisher,
+                        )
+                    }
             }
 
-            call.respond(mapOf("data" to "books"))
+            call.respond(mapOf("data" to books))
         }
     }
 }
